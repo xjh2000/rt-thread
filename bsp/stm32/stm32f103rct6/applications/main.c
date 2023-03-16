@@ -15,28 +15,10 @@
 /* defined the LED0 pin: PB1 */
 #define LED0_PIN    GET_PIN(A, 8)
 
-#define SAMPLE_UART_NAME       "uart1"    /* 串口设备名称 */
-static rt_device_t serial;                /* 串口设备句柄 */
-/* 查找串口设备 */
 
 char str[] = "hello RT-Thread!\r\n";
 
 int main(void) {
-    int count = 1;
-    /* set LED0 pin mode to output */
-    rt_pin_mode(LED0_PIN, PIN_MODE_OUTPUT);
-
-    serial = rt_device_find(SAMPLE_UART_NAME);
-
-    rt_device_open(serial, RT_DEVICE_FLAG_STREAM);
-
-    while (count++) {
-        rt_device_write(serial, 0, str, (sizeof(str) - 1));
-        rt_pin_write(LED0_PIN, PIN_HIGH);
-        rt_thread_mdelay(500);
-        rt_pin_write(LED0_PIN, PIN_LOW);
-        rt_thread_mdelay(500);
-    }
 
     return RT_EOK;
 }

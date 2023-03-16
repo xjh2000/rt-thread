@@ -25,7 +25,6 @@
 
 #define RT_KSERVICE_USING_STDLIB
 #define RT_DEBUG
-#define RT_DEBUG_COLOR
 
 /* Inter-Thread communication */
 
@@ -48,12 +47,8 @@
 #define RT_USING_DEVICE
 #define RT_USING_CONSOLE
 #define RT_CONSOLEBUF_SIZE 128
-#define RT_CONSOLE_DEVICE_NAME "uart1"
+#define RT_CONSOLE_DEVICE_NAME "uart0"
 #define RT_VER_NUM 0x50000
-#define RT_USING_CPU_FFS
-#define ARCH_ARM
-#define ARCH_ARM_CORTEX_M
-#define ARCH_ARM_CORTEX_M3
 
 /* RT-Thread Components */
 
@@ -80,7 +75,6 @@
 #define DFS_FILESYSTEMS_MAX 4
 #define DFS_FILESYSTEM_TYPES_MAX 4
 #define DFS_FD_MAX 16
-#define RT_USING_DFS_DEVFS
 
 /* Device Drivers */
 
@@ -152,6 +146,9 @@
 /* u8g2: a monochrome graphic library */
 
 
+/* PainterEngine: A cross-platform graphics application framework written in C language */
+
+
 /* tools packages */
 
 
@@ -171,19 +168,8 @@
 
 /* peripheral libraries and drivers */
 
-/* sensors drivers */
-
-
-/* touch drivers */
-
-
-/* Kendryte SDK */
-
 
 /* AI packages */
-
-
-/* Signal Processing and Control Algorithm Packages */
 
 
 /* miscellaneous packages */
@@ -196,46 +182,10 @@
 /* entertainment: terminal games and other interesting software packages */
 
 
-/* Arduino libraries */
-
-
-/* Projects */
-
-
-/* Sensors */
-
-
-/* Display */
-
-
-/* Timing */
-
-
-/* Data Processing */
-
-
-/* Data Storage */
-
-/* Communication */
-
-
-/* Device Control */
-
-
-/* Other */
-
-
-/* Signal IO */
-
-
-/* Uncategorized */
-
-#define SOC_FAMILY_STM32
-#define SOC_SERIES_STM32F1
-
 /* Hardware Drivers Config */
 
-#define SOC_STM32F103RC
+#define SOC_SERIES_GD32F4xx
+#define SOC_GD32470Z
 
 /* Onboard Peripheral Drivers */
 
@@ -243,8 +193,7 @@
 
 #define BSP_USING_GPIO
 #define BSP_USING_UART
-#define BSP_USING_UART1
-#define BSP_USING_UART2
+#define BSP_USING_UART0
 
 /* Board extended module Drivers */
 
