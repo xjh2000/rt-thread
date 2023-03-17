@@ -187,6 +187,10 @@
 
 /* samples: kernel and components samples */
 
+#define PKG_USING_KERNEL_SAMPLES
+#define PKG_USING_KERNEL_SAMPLES_LATEST_VERSION
+#define PKG_USING_KERNEL_SAMPLES_EN
+#define KERNEL_SAMPLES_USING_THREAD
 
 /* entertainment: terminal games and other interesting software packages */
 
