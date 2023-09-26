@@ -37,8 +37,8 @@ static rt_ssize_t wm_i2c_slv_xfer(struct rt_i2c_bus_device *bus,
                                  struct rt_i2c_msg msgs[],
                                  rt_uint32_t num);
 static rt_err_t wm_i2c_bus_control(struct rt_i2c_bus_device *bus,
-                                   rt_uint32_t,
-                                   rt_uint32_t);
+                                   int cmd,
+                                   void *args);
 
 static const struct rt_i2c_bus_device_ops wm_i2c_ops =
 {
@@ -132,10 +132,10 @@ static rt_ssize_t wm_i2c_slv_xfer(struct rt_i2c_bus_device *bus,
     return 0;
 }
 static rt_err_t wm_i2c_bus_control(struct rt_i2c_bus_device *bus,
-                                   rt_uint32_t cmd,
-                                   rt_uint32_t arg)
+                                   int cmd,
+                                   void *args)
 {
-    return RT_ERROR;
+    return -RT_ERROR;
 }
 
 void WM_I2C_IRQHandler(void)

@@ -48,6 +48,7 @@
 #define RT_CONSOLE_DEVICE_NAME "uart1"
 #define RT_VER_NUM 0x50000
 #define RT_USING_CACHE
+#define RT_USING_HW_ATOMIC
 #define RT_USING_CPU_FFS
 #define ARCH_MM_MMU
 #define ARCH_ARM
@@ -112,6 +113,7 @@
 /* Utilities */
 
 #define RT_USING_ADT
+#define RT_USING_ADT_AVL
 
 /* RT-Thread Utestcases */
 
@@ -149,9 +151,6 @@
 
 
 /* u8g2: a monochrome graphic library */
-
-
-/* PainterEngine: A cross-platform graphics application framework written in C language */
 
 
 /* tools packages */
@@ -226,18 +225,11 @@
 
 /* Other */
 
+
 /* Signal IO */
 
 
 /* Uncategorized */
-
-/* Privated Packages of RealThread */
-
-
-/* Network Utilities */
-
-
-/* RT-Thread Smart */
 
 #define RT_USING_UART1
 #define SOC_MCIMX6X4

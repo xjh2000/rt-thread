@@ -249,7 +249,7 @@ static struct exti_line_irq *exti_line_irq_list_find(rt_int16_t pin)
 
 static rt_err_t exti_line_irq_list_bind(struct rt_pin_irq_hdr *irq_hdr)
 {
-    rt_err_t ret = RT_EFULL;
+    rt_err_t ret = -RT_EFULL;
     rt_base_t level;
     struct exti_line_irq *item;
     int index;
@@ -280,7 +280,7 @@ static rt_err_t exti_line_irq_list_bind(struct rt_pin_irq_hdr *irq_hdr)
 
 static rt_err_t exti_line_irq_list_unbind(rt_int16_t pin)
 {
-    rt_err_t ret = RT_EEMPTY;
+    rt_err_t ret = -RT_EEMPTY;
     rt_base_t level;
     struct exti_line_irq *item;
 
@@ -467,6 +467,7 @@ rt_err_t ch32f2_pin_irq_enable(struct rt_device *device, rt_base_t pin, rt_uint8
 /*PX.XX*/
 rt_base_t ch32f2_pin_get(const char *name)
 {
+    rt_base_t pin;
     rt_uint16_t portsource, pinsource;
     int sz;
 
@@ -476,17 +477,24 @@ rt_base_t ch32f2_pin_get(const char *name)
     {
         portsource = name[1] - 0x41;
         pinsource = name[3] - 0x30;
-        return pin_info_list_find_pin(portsource, pinsource);
     }
 
     if (sz == 5)
     {
         portsource = name[1];
         pinsource = (name[3] - 0x30) * 10 + (name[4] - 0x30);
-        return pin_info_list_find_pin(portsource, pinsource);
     }
+    pin = pin_info_list_find_pin(portsource, pinsource);
 
-    return -1;
+    if (pin < 0)
+    {
+        goto out;
+    }
+    return pin;
+
+out:
+    rt_kprintf("Px.y  x:A~E  y:0~15, e.g. PA.0\n");
+    return -RT_EINVAL;
 }
 
 const static struct rt_pin_ops pin_ops = {

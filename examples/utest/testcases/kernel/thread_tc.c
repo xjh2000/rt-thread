@@ -1,4 +1,4 @@
-/*
+ /*
  * Copyright (c) 2006-2021, RT-Thread Development Team
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -13,7 +13,7 @@
 #include <stdlib.h>
 #include "utest.h"
 
-#define THREAD_STACK_SIZE  512
+#define THREAD_STACK_SIZE  UTEST_THR_STACK_SIZE
 #define THREAD_TIMESLICE   10
 
 rt_align(RT_ALIGN_SIZE)
@@ -28,19 +28,19 @@ static struct rt_thread thread2;
     static rt_thread_t tid7 = RT_NULL;
 #endif /* RT_USING_HEAP */
 
-static rt_uint32_t tid3_delay_pass_flag = 0;
-static rt_uint32_t tid3_finish_flag = 0;
-static rt_uint32_t tid4_finish_flag = 0;
-static rt_uint32_t tid6_finish_flag = 0;
-static rt_uint32_t thread5_source = 0;
+static volatile rt_uint32_t tid3_delay_pass_flag = 0;
+static volatile rt_uint32_t tid3_finish_flag = 0;
+static volatile rt_uint32_t tid4_finish_flag = 0;
+static volatile rt_uint32_t tid6_finish_flag = 0;
+static volatile rt_uint32_t thread5_source = 0;
 
 #ifndef RT_USING_SMP
-    static rt_uint32_t thread_yield_flag = 0;
+    static volatile rt_uint32_t thread_yield_flag = 0;
 #endif
-static rt_uint32_t entry_idle_hook_times = 0;
+static volatile rt_uint32_t entry_idle_hook_times = 0;
 static rt_thread_t __current_thread;
 static rt_uint8_t change_priority;
-static rt_uint32_t count = 0;
+static volatile rt_uint32_t count = 0;
 
 void thread1_entry(void *param)
 {
@@ -97,7 +97,7 @@ static void test_static_thread(void)
 {
     rt_err_t ret_init = -RT_ERROR;
     rt_err_t ret_startup = -RT_ERROR;
-    rt_err_t ret_detach = - RT_ERROR;
+    rt_err_t ret_detach = -RT_ERROR;
 
     ret_init = rt_thread_init(&thread2,
                               "thread2",

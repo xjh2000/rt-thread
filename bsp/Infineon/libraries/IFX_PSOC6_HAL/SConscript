@@ -16,10 +16,10 @@ src = Split('''
             mtb-hal-cat1/source/cyhal_gpio.c
             mtb-hal-cat1/source/cyhal_scb_common.c
             mtb-hal-cat1/source/cyhal_interconnect.c
-            mtb-hal-cat1/source/cyhal_utils_psoc.c
             mtb-hal-cat1/source/cyhal_utils.c
             mtb-hal-cat1/source/cyhal_lptimer.c
-            mtb-hal-cat1/source/cyhal_irq_psoc.c
+            mtb-hal-cat1/source/cyhal_utils_impl.c
+            mtb-hal-cat1/source/cyhal_irq_impl.c
             mtb-pdl-cat1/drivers/source/cy_sysclk.c
             mtb-pdl-cat1/drivers/source/cy_systick.c
             mtb-pdl-cat1/drivers/source/cy_gpio.c
@@ -93,7 +93,7 @@ if GetDepend(['RT_USING_ADC']):
     src += ['mtb-pdl-cat1/drivers/source/cy_dmac.c']
     src += ['mtb-pdl-cat1/drivers/source/cy_sysanalog.c']
 
-if GetDepend(['RT_USING_SDIO']):
+if GetDepend(['RT_USING_SDIO']) or GetDepend(['BSP_USING_CYW43012_WIFI']):
     src += ['mtb-hal-cat1/source/cyhal_sdhc.c']
     src += ['mtb-pdl-cat1/drivers/source/cy_sd_host.c']
 
@@ -115,7 +115,7 @@ if GetDepend('BSP_USING_RTC'):
     src += ['mtb-hal-cat1/source/cyhal_rtc.c']
     src += ['mtb-pdl-cat1/drivers/source/cy_rtc.c']
 
-if GetDepend('BSP_USING_ON_CHIP_FLASH'):
+if GetDepend('BSP_USING_ON_CHIP_FLASH') or GetDepend('BSP_USING_CYW43012_BT') :
     src += ['mtb-hal-cat1/source/cyhal_flash.c']
     src += ['mtb-pdl-cat1/drivers/source/cy_flash.c']
 

@@ -103,7 +103,7 @@ static rt_err_t n32_spi_init(struct n32_spi *spi_drv, struct rt_spi_configuratio
     if (cfg->mode & RT_SPI_SLAVE)
     {
         /* SPI_InitStructure->SpiMode = SPI_MODE_SLAVE; */
-        return RT_ERROR;
+        return -RT_ERROR;
     }
     else
     {
@@ -259,7 +259,7 @@ static rt_ssize_t _spi_recv(SPI_Module *hspi,
         {
             if ((rt_tick_get() - tickstart) > timeout)
             {
-                return RT_ETIMEOUT;
+                return -RT_ETIMEOUT;
             }
         }
         SPI_I2S_TransmitData(hspi, *tx_buff++);
@@ -268,7 +268,7 @@ static rt_ssize_t _spi_recv(SPI_Module *hspi,
         {
             if ((rt_tick_get() - tickstart) > timeout)
             {
-                return RT_ETIMEOUT;
+                return -RT_ETIMEOUT;
             }
         }
         dat = SPI_I2S_ReceiveData(hspi);
